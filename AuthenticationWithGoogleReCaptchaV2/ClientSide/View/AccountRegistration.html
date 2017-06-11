@@ -1,0 +1,33 @@
+<div class="container" style="padding-top:35px" ng-controller="userController as user">
+        <div class="panel col-md-8 col-md-offset-2">
+        <input type="hidden" value="@Model.Code" id="registrationCode" />
+            <h2 style="text-align:center">Register</h2>
+            <hr />
+            <div class="row">
+                <div class="col-md-push-2 col-md-8 col-md-push-23">
+                    <div class="form-wrap" ng-cloak>
+                        <form name="registerForm" ng-submit="user.captcha()" novalidate>
+					<!--other inputs for user registration go here-->
+                            </div>
+                            <!--Google recaptcha-->
+                            <div vc-recaptcha key="'@System.Configuration.ConfigurationManager.AppSettings["RecaptchaPublicKey"]'" ng-model="gRecaptchaResponse" on-create="user.getWidget(widgetId)"
+                                 on-success="user.getResponse(response)" on-expire="user.expire()"></div>
+
+                            <p style="font-size:12px">
+                                By clicking Register and creating an account, you agree to our
+                                <a href="@Url.Action("Index", "PrivacyPolicyNG")">Privacy Policy</a> and <a href="@Url.Action("Index", "tosNG")">Terms of Service</a>
+                            </p>
+                            <a href="/Users/Login" style="font-size:12px">Already have an account? Log In</a>
+                            <br />
+                            <input type="submit" class="btn btn-cta-primary" value="Register" ng-disabled="user.disabled || registerForm.$invalid">
+                            <br />
+                            <br />
+                        </form>
+                    </div>
+                </div> <!-- /.col-xs-12 -->
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div>
+    <script src="~/Scripts/aic/core/services/aic.service.recaptcha.js"></script>
+    <script src="~/Scripts/aic/core/service-factories/aic.service.factory.recaptcha.js"></script>
+<script src="~/Scripts/aic/core/controllers/aic.controller.register.js"></script>
