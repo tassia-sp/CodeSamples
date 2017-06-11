@@ -1,0 +1,54 @@
+﻿@using Sabio.Web.Models.Requests
+@model Sabio.Web.Models.ViewModels.ItemViewModel<ReferralRequest>
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+@section stylesheets {
+    <style>
+        .h2 {
+            text-align: center;
+        }
+
+        .referral {
+            padding-top: 45px;
+        }
+    </style>
+}
+<input type="hidden" id="candidateId" value="@Model.Item.CandidateId" />
+<input type="hidden" id="jobId" value="@Model.Item.JobId" />
+<div class="container referral" ng-controller='referralsController as referrals' novalidate>
+    <div class="panel panel-default col-md-8 col-md-offset-2">
+        <h4 ng-cloak>Refer {{referrals.item.candidateName}} for {{referrals.item.title}} at {{referrals.item.companyName}}</h4>
+        <hr />
+        <a href="/Jobs/Option/{{referrals.job.id}}" target="_blank">Go To Job Description</a>
+            <div class="row">
+
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <p ng-bind-html="referrals.job.description"></p>
+                </div>
+                <div class="col-md-1"></div>
+        </div>
+        <form class="col-md-12" ng-class="{ 'has-error' : referrals.item.message.$invalid }" name="referrals.item">
+            <div class="form-group row">
+                <textarea data-ck-editor class="form-control" rows="5" ng-model="referrals.item.message" ng-keyup="handleTextAreaHeight($event)" 
+                       placeholder="Why do you think this person would be a good candidate for the position?" required>
+                </textarea>
+                <p ng-show="referrals.item.$error.required" class="help-block">Required</p>
+            </div>
+            <button class="btn btn-cta-primary pull-right" ng-click="referrals.onSubmitClick()">Submit</button>
+            <br />
+            <br />
+        </form>
+    </div>
+</div>
+
+@section scripts {
+<script src="~/Scripts/sabio/core/services/sabio.services.referrals.js"></script>
+<script src="~/Scripts/sabio/core/service-factories/sabio.service.factory.referrals.js"></script>
+<script src="~/Scripts/sabio/core/directives/sabio.directive.ckeditor.js"></script>
+<script src="~/Scripts/sabio/core/controllers/sabio.controller.referrals.js"></script>
+<script src="~/Scripts/sabio/sabio.services.job.js"></script>
+    }
