@@ -7,7 +7,7 @@
     recaptchaServiceFactory.$inject = ['$baseService', '$aic'];
 
     function recaptchaServiceFactory($baseService, $aic) {
-        //sabio.page has been injected as $aic so we can reference anything
+        //aic.page has been injected as $aic so we can reference anything
         var aAicServiceObject = aic.services.recaptcha;
 
         //merge the jQuery object with the angular base service to simulate inheritance
