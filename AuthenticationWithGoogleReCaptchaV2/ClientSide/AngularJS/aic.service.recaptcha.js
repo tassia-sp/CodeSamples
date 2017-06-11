@@ -1,7 +1,5 @@
-﻿sabio.services.recaptcha = sabio.services.recaptcha || {};
+﻿aic.services.recaptcha = aic.services.recaptcha || {};
 
-sabio.services.recaptcha.post = function (data, onSuccess, onError) {
-    console.log("In sabio.services.recaptcha.post");
-
-    sabio.page.sendAjax("captcha", "POST", data, onSuccess, onError);
+aic.services.recaptcha.post = function (data, onSuccess, onError) {
+    aic.page.sendAjax("captcha", "POST", data, onSuccess, onError);
 }

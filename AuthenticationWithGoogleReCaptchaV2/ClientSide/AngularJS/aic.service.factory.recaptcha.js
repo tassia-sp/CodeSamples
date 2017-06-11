@@ -1,17 +1,17 @@
 ﻿(function () {
     'use strict';
     //implement service as a factory
-    angular.module('sabioApp').factory('$recaptchaService', recaptchaServiceFactory);
+    angular.module('aicApp').factory('$recaptchaService', recaptchaServiceFactory);
     //manually identify dependencies for injection
-    //$sabio is a reference for sabio.page object. sabio.page is created in sabio.js
-    recaptchaServiceFactory.$inject = ['$baseService', '$sabio'];
+    //$aic is a reference for aic.page object.
+    recaptchaServiceFactory.$inject = ['$baseService', '$aic'];
 
-    function recaptchaServiceFactory($baseService, $sabio) {
-        //sabio.page has been injected as $sabio so we can reference anything
-        var aSabioServiceObject = sabio.services.recaptcha;
+    function recaptchaServiceFactory($baseService, $aic) {
+        //sabio.page has been injected as $aic so we can reference anything
+        var aAicServiceObject = aic.services.recaptcha;
 
         //merge the jQuery object with the angular base service to simulate inheritance
-        var newService = $baseService.merge(true, {}, aSabioServiceObject, $baseService);
+        var newService = $baseService.merge(true, {}, aAicServiceObject, $baseService);
 
         return newService;
     }
